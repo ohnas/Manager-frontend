@@ -1,4 +1,23 @@
 #sales-list li {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#sales-list li span {
+    margin-right: 20px;
+}
+
+body {
+    height: 100vh;
+}
+
+.login-form {
+    display: flex;
+    justify-content: center;
+}
+
+.login-form form {
+    text-align: center;
+    margin-top: 15%;
 }
