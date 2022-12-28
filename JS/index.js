@@ -33,7 +33,11 @@ async function handleLogIn(logInData) {
         body : JSON.stringify(logInData),
     });
     let data = await response.json();
-    console.log(data.response);
+    if(data.response === "success") {
+        location.href = "sales.html";
+    } else {
+        alert("ID 와 PW를 확인해주세요");
+    }
 }
 
 logInForm.addEventListener("submit", logIn)
