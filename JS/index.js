@@ -18,10 +18,22 @@ function logIn(event) {
             "username" : logInId.value,
             "password" : logInPw.value,
         };
-        console.log(logInData);
         logInId.value = "";
         logInPw.value = "";
+        handleLogIn(logInData);
     }
+}
+
+async function handleLogIn(logInData) {
+    let response = await fetch("http://127.0.0.1:8000/api/v1/users/log-in" , {
+        method : "POST",
+        headers : {
+            'Content-Type': 'application/json'
+        },
+        body : JSON.stringify(logInData),
+    });
+    let data = await response.json();
+    console.log(data.response);
 }
 
 logInForm.addEventListener("submit", logIn)

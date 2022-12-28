@@ -1,16 +1,21 @@
-body {
-    height: 100vh;
-}
-
 h1 {
     text-align: center;
-}
-
-.login-form {
-    display: flex;
-    justify-content: center;
+    margin-top: 10%;
 }
 
 .login-form form {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form form input {
+    width: 15%;
+}
+
+.signup {
+    display: flex;
+    justify-content: center;
+    margin-top: -1%;
 }
