@@ -8,22 +8,21 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="css/index.css">
+    <title>Manager-Welcome</title>
 </head>
 
 <body>
-    <!-- <form method="get" action="http://127.0.0.1:8000/api/v1/sales/npr">
-        <label for="from">from</label>
-        <input id="from" type="date" name="order-from" />
-        <label for="to">to</label>
-        <input id="to" type="date" name="order-to" />
-        <button>조회</button>
-    </form>
-    <ul id="sales-list">
-    </ul> -->
-    <script src="JS/login.js"></script>
-    <script src="JS/sales.js"></script>
+    <h1>Manager</h1>
+    <div class="login-form">
+        <form method="post">
+            <input id="id" type="text" placeholder="ID" />
+            <input id="pw" type="password" placeholder="PW" />
+            <button id="login-btn" type="submit">Log In</button>
+            <button class="button button-outline">Sign Up</button>
+        </form>
+    </div>
+    <script src="JS/index.js"></script>
 </body>
 
 </html>

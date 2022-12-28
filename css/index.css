@@ -1,0 +1,16 @@
+body {
+    height: 100vh;
+}
+
+h1 {
+    text-align: center;
+}
+
+.login-form {
+    display: flex;
+    justify-content: center;
+}
+
+.login-form form {
+    text-align: center;
+}
