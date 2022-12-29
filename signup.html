@@ -13,7 +13,27 @@
 </head>
 
 <body>
-    <h1>Hello</h1>
+    <h1>Sign Up</h1>
+    <div class="signup-form">
+        <form method="post">
+            <label for="idfiled">ID</label>
+            <input id="idfiled" type="text" minlength="5" pattern="^[a-zA-Z0-9]+$" placeholder="최소 5자 이상 입력해주세요"
+                required />
+            <!--영어 정규식표현만 허용-->
+            <label for="pwfiled">PW</label>
+            <input id="pwfiled" type="password" placeholder="영문,숫자,특수문자포함하여 최소 6자 이상 입력해주세요"
+                pattern="^[a-zA-Z\\d`~!@#$%^&*()-_=+]{6,50}$" required />
+            <!--비밀번호(영문 대문, 숫자, 특수문자를 포함하여 6~50자 정규식표현만 허용-->
+            <label for="namefiled">NAME</label>
+            <input id="namefiled" type="text" minlength="2" placeholder="이름을 입력해주세요" pattern="^[ㄱ-ㅎ|가-힣]+$" required />
+            <!--한글 정규식표현만 허용-->
+            <label for="emailfiled">E-MAIL</label>
+            <input id="emailfiled" type="email" placeholder="e-mail 형식에 맞게 입력해주세요" required />
+            <button id="signup-btn" type="submit">Sign Up</button>
+        </form>
+    </div>
+
+    <script src=""></script>
 </body>
 
 </html>

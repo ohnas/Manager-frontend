@@ -1,0 +1,16 @@
+h1 {
+    text-align: center;
+    margin-top: 10%;
+}
+
+.signup-form form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.signup-form form input {
+    width: 30%;
+    text-align: center;
+}
