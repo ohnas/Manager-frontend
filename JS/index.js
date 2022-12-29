@@ -24,17 +24,19 @@ function logIn(event) {
     }
 }
 
+
 async function handleLogIn(logInData) {
     let response = await fetch("http://127.0.0.1:8000/api/v1/users/log-in" , {
         method : "POST",
+        credentials: "include",
         headers : {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         },
         body : JSON.stringify(logInData),
     });
     let data = await response.json();
     if(data.response === "success") {
-        location.href = "sales.html";
+        location.href = "integrations.html";
     } else {
         alert("ID 와 PW를 확인해주세요");
     }
