@@ -20,6 +20,12 @@ h1 {
     margin-top: -1%;
 }
 
+.select {
+    display: flex;
+    justify-content: center;
+    margin-top: -1%;
+}
+
 .hidden {
     display: none;
 }

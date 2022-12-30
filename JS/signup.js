@@ -5,6 +5,23 @@ const signUpName = document.getElementById("namefiled");
 const signUpEmail = document.getElementById("emailfiled");
 const signUpBtn = document.getElementById("signup-btn");
 
+async function userProfile() {
+    let response = await fetch("http://127.0.0.1:8000/api/v1/users", {
+        method : "GET",
+        credentials: "include",
+        headers : {
+            'Content-Type': 'application/json',
+        },
+    });
+    if(response.ok) {
+        let returnValue = confirm("현재 로그인 상태입니다. 해당페이지는 로그아웃 후에 사용 할 수 있습니다");
+        if(returnValue === true || returnValue === false) {
+            location.href = "index.html";
+        }
+    }
+}
+
+
 function signUp(event) {
     event.preventDefault();
     let signUpData = {
@@ -40,4 +57,5 @@ async function handleSignUp(signUpData) {
     }
 }
 
+userProfile();
 signUpForm.addEventListener("submit", signUp)

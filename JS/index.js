@@ -1,6 +1,24 @@
+const logInFormDiv = document.querySelector(".login-form");
 const logInForm = document.querySelector("form");
 const logInId = document.getElementById("id");
 const logInPw = document.getElementById("pw");
+const signUpDiv = document.querySelector(".signup");
+const selectDiv = document.querySelector(".select");
+
+async function userProfile() {
+    let response = await fetch("http://127.0.0.1:8000/api/v1/users", {
+        method : "GET",
+        credentials: "include",
+        headers : {
+            'Content-Type': 'application/json',
+        },
+    });
+    if(response.ok) {
+        logInFormDiv.classList.add("hidden");
+        signUpDiv.classList.add("hidden");
+        selectDiv.classList.remove("hidden");
+    }
+}
 
 
 function logIn(event) {
@@ -42,5 +60,5 @@ async function handleLogIn(logInData) {
     }
 }
 
-
+userProfile();
 logInForm.addEventListener("submit", logIn)
