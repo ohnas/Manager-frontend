@@ -20,7 +20,7 @@ async function logOut() {
     });
     let data = await response.json();
     if(data.response === "success") {
-        alert("로그아웃 성공")
+        alert("로그아웃")
     } else {
         alert("확인해주세요");
     }

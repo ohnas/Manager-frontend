@@ -1,7 +1,7 @@
 const logInForm = document.querySelector("form");
 const logInId = document.getElementById("id");
 const logInPw = document.getElementById("pw");
-const logInBtn = document.getElementById("login-btn");
+
 
 function logIn(event) {
     event.preventDefault();
@@ -21,9 +21,9 @@ function logIn(event) {
         logInId.value = "";
         logInPw.value = "";
         handleLogIn(logInData);
+
     }
 }
-
 
 async function handleLogIn(logInData) {
     let response = await fetch("http://127.0.0.1:8000/api/v1/users/log-in" , {
@@ -34,12 +34,13 @@ async function handleLogIn(logInData) {
         },
         body : JSON.stringify(logInData),
     });
-    let data = await response.json();
-    if(data.response === "success") {
-        location.href = "integrations.html";
+    // let data = await response.json();
+    if(response.ok) {
+        location.href = "select.html";
     } else {
         alert("ID 와 PW를 확인해주세요");
     }
 }
+
 
 logInForm.addEventListener("submit", logIn)
