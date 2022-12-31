@@ -1,6 +1,39 @@
+import { baseUrl } from "./setting.js";
 const logOutBtn = document.querySelector(".button");
 const dateForm = document.querySelector(".date-form");
 const dateInput = dateForm.querySelector("input");
+
+async function userProfile() {
+    let response = await fetch(`${baseUrl}/api/v1/users`, {
+        method : "GET",
+        credentials: "include",
+        headers : {
+            'Content-Type': 'application/json',
+        },
+    });
+    if(!response.ok) {
+        let returnValue = confirm("현재 로그아웃 상태입니다. 해당페이지는 로그인 후에 사용 할 수 있습니다");
+        if(returnValue === true || returnValue === false) {
+            location.href = "index.html";
+        }
+    }
+}
+
+async function productProfile() {
+    let response = await fetch(`${baseUrl}/api/v1/products/1`, {
+        method : "GET",
+        credentials: "include",
+        headers : {
+            'Content-Type': 'application/json',
+        },
+    });
+    if(!response.ok) {
+        let returnValue = confirm("현재 로그아웃 상태입니다. 해당페이지는 로그인 후에 사용 할 수 있습니다");
+        if(returnValue === true || returnValue === false) {
+            location.href = "index.html";
+        }
+    }
+}
 
 
 //조회할 날짜 전일로 제한시켜놓기
@@ -9,6 +42,10 @@ function handleDateInput() {
     const yesterday = new Date(today.setDate(today.getDate() - 1));
     const yesterdayValue = `${yesterday.getFullYear()}-${yesterday.getMonth() + 1}-${yesterday.getDate()}`
     dateInput.setAttribute("max", yesterdayValue);
+}
+
+function saleRetrieve(event) {
+    event.preventDefault();
 }
 
 
@@ -22,7 +59,7 @@ function getCookie(name) {
 
 async function logOut() {
     let csrftoken = getCookie('csrftoken');
-    let response = await fetch("http://127.0.0.1:8000/api/v1/users/log-out" , {
+    let response = await fetch(`${baseUrl}/api/v1/users/log-out` , {
         method : "POST",
         credentials: "include",
         headers : {
@@ -38,5 +75,6 @@ async function logOut() {
     }
 }
 
+userProfile();
 handleDateInput();
 logOutBtn.addEventListener("click", logOut);

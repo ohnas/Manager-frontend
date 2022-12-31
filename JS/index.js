@@ -1,3 +1,4 @@
+import { baseUrl } from "./setting.js";
 const logInFormDiv = document.querySelector(".login-form");
 const logInForm = document.querySelector("form");
 const logInId = document.getElementById("id");
@@ -6,7 +7,7 @@ const signUpDiv = document.querySelector(".signup");
 const selectDiv = document.querySelector(".select");
 
 async function userProfile() {
-    let response = await fetch("http://127.0.0.1:8000/api/v1/users", {
+    let response = await fetch(`${baseUrl}/api/v1/users`, {
         method : "GET",
         credentials: "include",
         headers : {
@@ -44,7 +45,7 @@ function logIn(event) {
 }
 
 async function handleLogIn(logInData) {
-    let response = await fetch("http://127.0.0.1:8000/api/v1/users/log-in" , {
+    let response = await fetch(`${baseUrl}api/v1/users/log-in` , {
         method : "POST",
         credentials: "include",
         headers : {

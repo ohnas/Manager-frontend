@@ -1,3 +1,4 @@
+import { baseUrl } from "./setting.js";
 const signUpForm = document.querySelector("form");
 const signUpId = document.getElementById("idfiled");
 const signUpPw = document.getElementById("pwfiled");
@@ -6,7 +7,7 @@ const signUpEmail = document.getElementById("emailfiled");
 const signUpBtn = document.getElementById("signup-btn");
 
 async function userProfile() {
-    let response = await fetch("http://127.0.0.1:8000/api/v1/users", {
+    let response = await fetch(`${baseUrl}/api/v1/users`, {
         method : "GET",
         credentials: "include",
         headers : {
@@ -38,7 +39,7 @@ function signUp(event) {
 }
 
 async function handleSignUp(signUpData) {
-    let response = await fetch("http://127.0.0.1:8000/api/v1/users/create" , {
+    let response = await fetch(`${baseUrl}/api/v1/users/create` , {
         method : "POST",
         credentials: "include",
         headers : {

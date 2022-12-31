@@ -20,7 +20,10 @@
     </div>
     <h4>조회 할 날짜를 선택해주세요.</h4>
     <form class="date-form">
-        <input type="date" />
+        <input type="date" required />
+        <select required>
+            <option value="">조회 할 상품을 선택해주세요.</option>
+        </select>
         <button type="submit">조회</button>
     </form>
     <table>
@@ -38,7 +41,7 @@
 
         </tbody>
     </table>
-    <script src="JS/integrations.js"></script>
+    <script src="JS/integrations.js" type="module"></script>
 </body>
 
 </html>

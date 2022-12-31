@@ -1,7 +1,8 @@
+import { baseUrl } from "./setting.js";
 const selectUl = document.querySelector(".select");
 
 async function userProfile() {
-    let response = await fetch("http://127.0.0.1:8000/api/v1/users", {
+    let response = await fetch(`${baseUrl}/api/v1/users`, {
         method : "GET",
         credentials: "include",
         headers : {
@@ -18,7 +19,7 @@ async function userProfile() {
 }
 
 async function handleSelect(pk) {
-    let response = await fetch(`http://127.0.0.1:8000/api/v1/users/${pk}` , {
+    let response = await fetch(`${baseUrl}/api/v1/users/${pk}` , {
         method : "GET",
         credentials: "include",
         headers : {
