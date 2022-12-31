@@ -1,4 +1,16 @@
 const logOutBtn = document.querySelector(".button");
+const dateForm = document.querySelector(".date-form");
+const dateInput = dateForm.querySelector("input");
+
+
+//조회할 날짜 전일로 제한시켜놓기
+function handleDateInput() {
+    const today = new Date();
+    const yesterday = new Date(today.setDate(today.getDate() - 1));
+    const yesterdayValue = `${yesterday.getFullYear()}-${yesterday.getMonth() + 1}-${yesterday.getDate()}`
+    dateInput.setAttribute("max", yesterdayValue);
+}
+
 
 // 모던 자바스크립트에서 찾은 내용
 function getCookie(name) {
@@ -26,4 +38,5 @@ async function logOut() {
     }
 }
 
+handleDateInput();
 logOutBtn.addEventListener("click", logOut);
