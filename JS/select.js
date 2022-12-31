@@ -32,8 +32,11 @@ async function handleSelect(pk) {
         selectUl.appendChild(nameLi);
     } else {
         data.forEach(element => {
+            let nameLink = document.createElement("a");
             let nameLi = document.createElement("li");
-            nameLi.innerText = `${element.name}`;
+            nameLink.innerText = `${element.name}`;
+            nameLink.setAttribute("href", "integrations.html");
+            nameLi.appendChild(nameLink);
             selectUl.appendChild(nameLi);
         });
     }
