@@ -2,8 +2,9 @@ import { baseUrl } from "./setting.js";
 const headerDiv = document.querySelector(".header");
 const headerH1 = headerDiv.querySelector("h1");
 const logOutBtn = document.querySelector(".button");
-const dateForm = document.querySelector(".date-form");
-const dateInput = dateForm.querySelector("input");
+const integrationForm = document.querySelector(".integration-form");
+const productSelect = integrationForm.querySelector("select");
+const dateInput = integrationForm.querySelector("input");
 
 const currentUrl = location.href;
 const url = new URL(currentUrl);
@@ -20,7 +21,7 @@ async function userProfile() {
         },
     });
     if(response.ok) {
-        //productProfile();
+        productProfile();
     } else {
         alert("로그인이 되어있지 않습니다. 로그인 해주세요.");
         location.href = "index.html";
@@ -28,15 +29,23 @@ async function userProfile() {
 }
 
 async function productProfile() {
-    let response = await fetch(`${baseUrl}/api/v1/products/1`, {
+    let response = await fetch(`${baseUrl}/api/v1/products/?brand=${brandName}`, {
         method : "GET",
         credentials: "include",
         headers : {
             'Content-Type': 'application/json',
         },
     });
+    if(response.ok) {
+        let data = await response.json();
+        data.forEach(element => {
+            let productOption = document.createElement("option");
+            productOption.setAttribute("value", `${element.name}`)
+            productOption.innerText = `${element.name}`
+            productSelect.appendChild(productOption);
+        });
+    }
 }
-
 
 //조회할 날짜 전일로 제한시켜놓기
 function handleDateInput() {

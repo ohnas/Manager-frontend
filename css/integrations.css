@@ -1,4 +1,17 @@
 .header {
     display: flex;
     justify-content: space-between;
+    margin-left: 1%;
+}
+
+.integration-form {
+    margin-left: 1%;
+}
+
+.integration-form input {
+    width: 25%;
+}
+
+.integration-form select {
+    width: 25%;
 }
