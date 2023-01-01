@@ -4,5 +4,7 @@ h1 {
 }
 
 .select {
+    margin-top: 3%;
     text-align: center;
+    list-style: none;
 }
