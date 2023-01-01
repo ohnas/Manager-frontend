@@ -1,7 +1,15 @@
 import { baseUrl } from "./setting.js";
+const headerDiv = document.querySelector(".header");
+const headerH1 = headerDiv.querySelector("h1");
 const logOutBtn = document.querySelector(".button");
 const dateForm = document.querySelector(".date-form");
 const dateInput = dateForm.querySelector("input");
+
+const currentUrl = location.href;
+const url = new URL(currentUrl);
+const urlParams = url.searchParams;
+const brandName = urlParams.get("brand");
+headerH1.innerText = `selected brand : ${brandName}`;
 
 async function userProfile() {
     let response = await fetch(`${baseUrl}/api/v1/users`, {
@@ -27,12 +35,6 @@ async function productProfile() {
             'Content-Type': 'application/json',
         },
     });
-    if(!response.ok) {
-        let returnValue = confirm("현재 로그아웃 상태입니다. 해당페이지는 로그인 후에 사용 할 수 있습니다");
-        if(returnValue === true || returnValue === false) {
-            location.href = "index.html";
-        }
-    }
 }
 
 

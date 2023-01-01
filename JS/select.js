@@ -36,7 +36,7 @@ async function handleSelect() {
             let nameForm = document.createElement("form");
             let nameLi = document.createElement("li");
             nameInput.setAttribute("value", `${element.name}`);
-            nameInput.setAttribute("name", "brnad");
+            nameInput.setAttribute("name", "brand");
             nameInput.setAttribute("type", "submit");
             nameInput.setAttribute("class", "button-clear");
             nameForm.appendChild(nameInput);
