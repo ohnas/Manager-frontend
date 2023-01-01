@@ -61,6 +61,31 @@ function handleDateInput() {
     dateInput.setAttribute("max", yesterdayValue);
 }
 
+function paintSales(data) {
+    data.forEach(element => {
+        let productNameTd = document.createElement("td");
+        let productCostTd = document.createElement("td");
+        let countTd = document.createElement("td");
+        let priceTd = document.createElement("td");
+        let deliveryPriceTd = document.createElement("td");
+        let payTimeTd = document.createElement("td");
+        let salesTableTr = document.createElement("tr");
+        productNameTd.innerText = `${element.product.name}`;
+        productCostTd.innerText = `${element.product.cost}`;
+        countTd.innerText = `${element.count}`;
+        priceTd.innerText = `${element.price}`;
+        deliveryPriceTd.innerText = `${element.delivery_price}`;
+        payTimeTd.innerText = `${element.pay_time}`;
+        salesTableTr.appendChild(productNameTd);
+        salesTableTr.appendChild(productCostTd);
+        salesTableTr.appendChild(countTd);
+        salesTableTr.appendChild(priceTd);
+        salesTableTr.appendChild(deliveryPriceTd);
+        salesTableTr.appendChild(payTimeTd);
+        salesTableTbody.appendChild(salesTableTr);
+    });
+}
+
 async function saleRetrieve(event) {
     event.preventDefault();
     let productName = productSelect.value;
@@ -77,57 +102,14 @@ async function saleRetrieve(event) {
         alert("선택 한 날짜에는 판매 데이터가 없습니다. 다른 날짜를 선택해주세요");
     } else {
         if(salesTableTbody.firstElementChild === null) {
-            data.forEach(element => {
-                let productNameTd = document.createElement("td");
-                let productCostTd = document.createElement("td");
-                let countTd = document.createElement("td");
-                let priceTd = document.createElement("td");
-                let deliveryPriceTd = document.createElement("td");
-                let payTimeTd = document.createElement("td");
-                let salesTableTr = document.createElement("tr");
-                productNameTd.innerText = `${element.product.name}`;
-                productCostTd.innerText = `${element.product.cost}`;
-                countTd.innerText = `${element.count}`;
-                priceTd.innerText = `${element.price}`;
-                deliveryPriceTd.innerText = `${element.delivery_price}`;
-                payTimeTd.innerText = `${element.pay_time}`;
-                salesTableTr.appendChild(productNameTd);
-                salesTableTr.appendChild(productCostTd);
-                salesTableTr.appendChild(countTd);
-                salesTableTr.appendChild(priceTd);
-                salesTableTr.appendChild(deliveryPriceTd);
-                salesTableTr.appendChild(payTimeTd);
-                salesTableTbody.appendChild(salesTableTr);
-            });
+            paintSales(data);
         } else {
             const tr = salesTableTbody.querySelector("tr");
             tr.remove();
-            data.forEach(element => {
-                let productNameTd = document.createElement("td");
-                let productCostTd = document.createElement("td");
-                let countTd = document.createElement("td");
-                let priceTd = document.createElement("td");
-                let deliveryPriceTd = document.createElement("td");
-                let payTimeTd = document.createElement("td");
-                let salesTableTr = document.createElement("tr");
-                productNameTd.innerText = `${element.product.name}`;
-                productCostTd.innerText = `${element.product.cost}`;
-                countTd.innerText = `${element.count}`;
-                priceTd.innerText = `${element.price}`;
-                deliveryPriceTd.innerText = `${element.delivery_price}`;
-                payTimeTd.innerText = `${element.pay_time}`;
-                salesTableTr.appendChild(productNameTd);
-                salesTableTr.appendChild(productCostTd);
-                salesTableTr.appendChild(countTd);
-                salesTableTr.appendChild(priceTd);
-                salesTableTr.appendChild(deliveryPriceTd);
-                salesTableTr.appendChild(payTimeTd);
-                salesTableTbody.appendChild(salesTableTr);
-            });
+            paintSales(data);
         }
     }
 }
-
 
 // 모던 자바스크립트에서 찾은 내용
 function getCookie(name) {
