@@ -11,11 +11,11 @@ async function userProfile() {
             'Content-Type': 'application/json',
         },
     });
-    if(!response.ok) {
-        let returnValue = confirm("현재 로그아웃 상태입니다. 해당페이지는 로그인 후에 사용 할 수 있습니다");
-        if(returnValue === true || returnValue === false) {
-            location.href = "index.html";
-        }
+    if(response.ok) {
+        //productProfile();
+    } else {
+        alert("로그인이 되어있지 않습니다. 로그인 해주세요.");
+        location.href = "index.html";
     }
 }
 
@@ -44,9 +44,9 @@ function handleDateInput() {
     dateInput.setAttribute("max", yesterdayValue);
 }
 
-function saleRetrieve(event) {
-    event.preventDefault();
-}
+// function saleRetrieve(event) {
+//     event.preventDefault();
+// }
 
 
 // 모던 자바스크립트에서 찾은 내용

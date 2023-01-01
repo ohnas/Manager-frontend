@@ -10,16 +10,15 @@ async function userProfile() {
         },
     });
     if(response.ok) {
-        let data = await response.json();
-        let pk = data.pk
-        handleSelect(pk);
+        handleSelect();
     } else {
-        alert("로그인이 되어있지 않습니다. 로그인 해주세요.")
+        alert("로그인이 되어있지 않습니다. 로그인 해주세요.");
+        location.href = "index.html";
     }
 }
 
-async function handleSelect(pk) {
-    let response = await fetch(`${baseUrl}/api/v1/users/${pk}` , {
+async function handleSelect() {
+    let response = await fetch(`${baseUrl}/api/v1/brands` , {
         method : "GET",
         credentials: "include",
         headers : {
@@ -33,11 +32,17 @@ async function handleSelect(pk) {
         selectUl.appendChild(nameLi);
     } else {
         data.forEach(element => {
-            let nameLink = document.createElement("a");
+            let nameInput = document.createElement("input");
+            let nameForm = document.createElement("form");
             let nameLi = document.createElement("li");
-            nameLink.innerText = `${element.name}`;
-            nameLink.setAttribute("href", "integrations.html");
-            nameLi.appendChild(nameLink);
+            nameInput.setAttribute("value", `${element.name}`);
+            nameInput.setAttribute("name", "brnad");
+            nameInput.setAttribute("type", "submit");
+            nameInput.setAttribute("class", "button-clear");
+            nameForm.appendChild(nameInput);
+            nameForm.setAttribute("method", "get");
+            nameForm.setAttribute("action", "integrations.html");
+            nameLi.appendChild(nameForm);
             selectUl.appendChild(nameLi);
         });
     }

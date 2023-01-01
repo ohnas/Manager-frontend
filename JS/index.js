@@ -45,7 +45,7 @@ function logIn(event) {
 }
 
 async function handleLogIn(logInData) {
-    let response = await fetch(`${baseUrl}api/v1/users/log-in` , {
+    let response = await fetch(`${baseUrl}/api/v1/users/log-in` , {
         method : "POST",
         credentials: "include",
         headers : {
