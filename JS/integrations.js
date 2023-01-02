@@ -3,7 +3,8 @@ const headerDiv = document.querySelector(".header");
 const headerH1 = headerDiv.querySelector("h1");
 const logOutBtn = document.querySelector(".button");
 const integrationForm = document.querySelector(".integration-form");
-const productSelect = integrationForm.querySelector("select");
+const productSelect = document.getElementById("productfield");
+const siteSelect = document.getElementById("sitefield");
 const dateInput = integrationForm.querySelector("input");
 const salesTable = document.querySelector(".sales-table");
 const salesTableTbody = salesTable.querySelector("tbody");
@@ -13,7 +14,7 @@ const currentUrl = location.href;
 const url = new URL(currentUrl);
 const urlParams = url.searchParams;
 const brandName = urlParams.get("brand");
-headerH1.innerText = `selected brand : ${brandName}`;
+headerH1.innerText = `${brandName}`;
 
 async function userProfile() {
     let response = await fetch(`${baseUrl}/api/v1/users`, {
@@ -24,15 +25,15 @@ async function userProfile() {
         },
     });
     if(response.ok) {
-        productProfile();
+        brandProfile();
     } else {
         alert("로그인이 되어있지 않습니다. 로그인 해주세요.");
         location.href = "index.html";
     }
 }
 
-async function productProfile() {
-    let response = await fetch(`${baseUrl}/api/v1/products/?brand=${brandName}`, {
+async function brandProfile() {
+    let response = await fetch(`${baseUrl}/api/v1/brands/${brandName}`, {
         method : "GET",
         credentials: "include",
         headers : {
@@ -41,14 +42,22 @@ async function productProfile() {
     });
     let data = await response.json();
     if(data.length === 0) {
-        alert("현재 등록된 상품이 없습니다. 상품을 먼저 등록해주세요");
-        //to-do : move to create product page.
+        alert("현재 등록된 정보가 없습니다. 브랜드에 관련된 정보를 등록해주세요");
+        //to-do : move to create page.
     } else {
-        data.forEach(element => {
+        let product = data.product_set;
+        let site = data.site_set;
+        product.forEach(element => {
             let productOption = document.createElement("option");
-            productOption.setAttribute("value", `${element.name}`)
-            productOption.innerText = `${element.name}`
+            productOption.setAttribute("value", `${element.name}`);
+            productOption.innerText = `${element.name}`;
             productSelect.appendChild(productOption);
+        });
+        site.forEach(element => {
+            let siteOption = document.createElement("option");
+            siteOption.setAttribute("value", `${element.name}`);
+            siteOption.innerText = `${element.name}`;
+            siteSelect.appendChild(siteOption);
         });
     }
 }
@@ -132,8 +141,10 @@ async function logOut() {
     let data = await response.json();
     if(data.response === "success") {
         alert("로그아웃")
+        location.href = "index.html";
     } else {
         alert("확인해주세요");
+        location.href = "index.html";
     }
 }
 
