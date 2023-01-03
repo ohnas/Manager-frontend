@@ -15,10 +15,8 @@ async function userProfile() {
         },
     });
     if(response.ok) {
-        let returnValue = confirm("현재 로그인 상태입니다. 해당페이지는 로그아웃 후에 사용 할 수 있습니다");
-        if(returnValue === true || returnValue === false) {
-            location.href = "index.html";
-        }
+        alert("현재 로그인 상태입니다. 해당페이지는 로그아웃 후에 사용 할 수 있습니다");
+        location.href = "index.html";
     }
 }
 

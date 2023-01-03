@@ -4,7 +4,8 @@ const logInForm = document.querySelector("form");
 const logInId = document.getElementById("id");
 const logInPw = document.getElementById("pw");
 const signUpDiv = document.querySelector(".signup");
-const selectDiv = document.querySelector(".select");
+const goBrandDiv = document.querySelector(".go-brand");
+const goManagementDiv = document.querySelector(".go-management");
 
 async function userProfile() {
     let response = await fetch(`${baseUrl}/api/v1/users`, {
@@ -14,10 +15,14 @@ async function userProfile() {
             'Content-Type': 'application/json',
         },
     });
+    let data = await response.json();
     if(response.ok) {
         logInFormDiv.classList.add("hidden");
         signUpDiv.classList.add("hidden");
-        selectDiv.classList.remove("hidden");
+        goBrandDiv.classList.remove("hidden");
+        if(data.is_staff === true) {
+            goManagementDiv.classList.remove("hidden");
+        }
     }
 }
 
@@ -53,7 +58,6 @@ async function handleLogIn(logInData) {
         },
         body : JSON.stringify(logInData),
     });
-    // let data = await response.json();
     if(response.ok) {
         location.href = "select.html";
     } else {

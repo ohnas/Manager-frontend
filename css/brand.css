@@ -1,0 +1,26 @@
+h1 {
+    text-align: center;
+    margin-top: 10%;
+}
+
+.brand-form form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.brand-form form input {
+    width: 30%;
+    text-align: center;
+}
+
+.brand-form form textarea {
+    width: 30%;
+    text-align: center;
+}
+
+.brand-form form select {
+    width: 30%;
+    text-align: center;
+}

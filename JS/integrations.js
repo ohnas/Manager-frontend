@@ -66,7 +66,6 @@ async function brandProfile() {
 function handleDateInput() {
     const today = new Date();
     const yesterday = new Date(today.setDate(today.getDate() - 1));
-    console.log(yesterday);
     let month = yesterday.getMonth() + 1;
     if(month < 10) {
         month = `0${month}`
@@ -76,7 +75,6 @@ function handleDateInput() {
         date = `0${date}`
     }
     const yesterdayValue = `${yesterday.getFullYear()}-${month}-${date}`
-    console.log(yesterdayValue);
     dateInput.setAttribute("max", yesterdayValue);
 }
 
