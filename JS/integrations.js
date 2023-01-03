@@ -5,7 +5,7 @@ const logOutBtn = document.querySelector(".button");
 const integrationForm = document.querySelector(".integration-form");
 const productSelect = document.getElementById("productfield");
 const siteSelect = document.getElementById("sitefield");
-const dateInput = integrationForm.querySelector("input");
+const dateInput = document.getElementById("datefield");
 const salesTable = document.querySelector(".sales-table");
 const salesTableTbody = salesTable.querySelector("tbody");
 
@@ -66,7 +66,17 @@ async function brandProfile() {
 function handleDateInput() {
     const today = new Date();
     const yesterday = new Date(today.setDate(today.getDate() - 1));
-    const yesterdayValue = `${yesterday.getFullYear()}-${yesterday.getMonth() + 1}-${yesterday.getDate()}`
+    console.log(yesterday);
+    let month = yesterday.getMonth() + 1;
+    if(month < 10) {
+        month = `0${month}`
+    }
+    let date = yesterday.getDate();
+    if(date < 10) {
+        date = `0${date}`
+    }
+    const yesterdayValue = `${yesterday.getFullYear()}-${month}-${date}`
+    console.log(yesterdayValue);
     dateInput.setAttribute("max", yesterdayValue);
 }
 
@@ -98,8 +108,9 @@ function paintSales(data) {
 async function saleRetrieve(event) {
     event.preventDefault();
     let productName = productSelect.value;
+    let siteName = siteSelect.value;
     let date = dateInput.value;
-    let response = await fetch(`${baseUrl}/api/v1/sales/?product=${productName}&date=${date}`, {
+    let response = await fetch(`${baseUrl}/api/v1/sales/?product=${productName}&site=${siteName}&date=${date}`, {
         method : "GET",
         credentials: "include",
         headers : {
