@@ -1,10 +1,10 @@
-import { baseUrl } from "./setting.js";
+import { baseUrl, getCookie } from "./setting.js";
 const signUpForm = document.querySelector("form");
 const signUpId = document.getElementById("idfiled");
 const signUpPw = document.getElementById("pwfiled");
 const signUpName = document.getElementById("namefiled");
 const signUpEmail = document.getElementById("emailfiled");
-const signUpBtn = document.getElementById("signup-btn");
+
 
 async function userProfile() {
     let response = await fetch(`${baseUrl}/api/v1/users`, {
@@ -37,20 +37,20 @@ function signUp(event) {
 }
 
 async function handleSignUp(signUpData) {
+    let csrftoken = getCookie('csrftoken');
     let response = await fetch(`${baseUrl}/api/v1/users/create` , {
         method : "POST",
         credentials: "include",
         headers : {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            "X-CSRFToken": csrftoken,
         },
         body : JSON.stringify(signUpData),
     });
     let data = await response.json();
     if(data.response === "success") {
-        let returnValue = confirm("회원가입 성공하였습니다. 로그인 하러 가시겠습니까?");
-        if(returnValue === true) {
+        alert("회원가입 성공하였습니다. 로그인 하러 가시겠습니까?");
             location.href = "index.html";
-        }
     } else {
         alert("입력 조건을 확인해주세요");
     }

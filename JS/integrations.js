@@ -1,4 +1,4 @@
-import { baseUrl } from "./setting.js";
+import { baseUrl, getCookie } from "./setting.js";
 const headerDiv = document.querySelector(".header");
 const headerH1 = headerDiv.querySelector("h1");
 const logOutBtn = document.querySelector(".button");
@@ -33,7 +33,7 @@ async function userProfile() {
 }
 
 async function brandProfile() {
-    let response = await fetch(`${baseUrl}/api/v1/brands/${brandName}`, {
+    let response = await fetch(`${baseUrl}/api/v1/brands/@${brandName}`, {
         method : "GET",
         credentials: "include",
         headers : {
@@ -129,13 +129,6 @@ async function saleRetrieve(event) {
     }
 }
 
-// 모던 자바스크립트에서 찾은 내용
-function getCookie(name) {
-    let matches = document.cookie.match(new RegExp(
-        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-    ));
-    return matches ? decodeURIComponent(matches[1]) : undefined;
-}
 
 async function logOut() {
     let csrftoken = getCookie('csrftoken');
