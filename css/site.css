@@ -1,0 +1,45 @@
+h1 {
+    text-align: center;
+    margin-top: 10%;
+}
+
+.site-form {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+#sale-site-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    margin-right: 5%;
+}
+
+
+#sale-site-form input {
+    text-align: center;
+}
+
+#sale-site-form select {
+    text-align: center;
+}
+
+#facebook-site-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+}
+
+
+#facebook-site-form input {
+    text-align: center;
+}
+
+#facebook-site-form select {
+    text-align: center;
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/favicon.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
+    <link rel="stylesheet" href="css/site.css">
+    <title>Manager-Create Site</title>
+</head>
+
+<body>
+    <h1>Create Site</h1>
+    <div class="site-form">
+        <form method="post" id="sale-site-form">
+            <label for="sale-site-field">NAME</label>
+            <input id="sale-site-field" type="text" placeholder="판매사이트를 입력해주세요" required />
+            <label for="sale-site-url-field">URL</label>
+            <input id="sale-site-url-field" type="url" placeholder="판매사이트 URL을 입력해주세요" required />
+            <label for="apikeyfiled">API KEY</label>
+            <input id="apikeyfiled" type="text" placeholder="API KEY를 입력해주세요" required />
+            <label for="secretkeyfiled">SECRET KEY</label>
+            <input id="secretkeyfiled" type="text" placeholder="SECRET KEY를 입력해주세요" required />
+            <label for="sale-brand-field">BRAND</label>
+            <select id="sale-brand-field" required></select>
+            <button id="create-btn" type="submit">Create</button>
+        </form>
+        <form method="post" id="facebook-site-form">
+            <label for="facebook-site-field">NAME</label>
+            <input id="facebook-site-field" type="text" placeholder="광고계정을 입력해주세요" required />
+            <label for="facebook-site-url-field">URL</label>
+            <input id="facebook-site-url-field" type="url" placeholder="페이스북 광고계정 URL을 입력해주세요" required />
+            <label for="ad-account-id-field">AD ACCOUNT ID</label>
+            <input id="ad-account-id-field" type="text" placeholder="Ad Account id를 입력해주세요" required />
+            <label for="facebook-brand-field">BRAND</label>
+            <select id="facebook-brand-field" required></select>
+            <button id="create-btn" type="submit">Create</button>
+        </form>
+    </div>
+
+    <script src="JS/site.js" type="module"></script>
+</body>
+
+</html>
