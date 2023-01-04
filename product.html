@@ -9,27 +9,25 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
-    <link rel="stylesheet" href="css/brand.css">
-    <title>Manager-Create Brand</title>
+    <link rel="stylesheet" href="css/product.css">
+    <title>Manager-Create Product</title>
 </head>
 
 <body>
-    <h1>Create Brand</h1>
-    <div class="brand-form">
+    <h1>Create Product</h1>
+    <div class="product-form">
         <form method="post">
             <label for="namefiled">NAME</label>
-            <input id="namefiled" type="text" minlength="2" pattern="^[a-zA-Z0-9]+$" placeholder="최소 2자 이상 영문으로 적어주세요"
-                required />
-            <!--영어 정규식표현만 허용-->
-            <label for="desfiled">DESCRIPTION</label>
-            <textarea id="desfiled" placeholder="브랜드에 대한 설명을 적어주세요"></textarea>
-            <label for="bmfiled">BM</label>
-            <select id="bmfiled" required></select>
+            <input id="namefiled" type="text" placeholder="상품명을 적어주세요" required />
+            <label for="costfiled">COST</label>
+            <input id="costfiled" type="number" min="0" placeholder="상품원가를 적어주세요" required />
+            <label for="brnadfiled">BRAND</label>
+            <select id="brandfiled" required></select>
             <button id="create-btn" type="submit">Create</button>
         </form>
     </div>
 
-    <script src="JS/brand.js" type="module"></script>
+    <script src="JS/product.js" type="module"></script>
 </body>
 
 </html>

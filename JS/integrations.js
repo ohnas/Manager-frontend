@@ -49,13 +49,13 @@ async function brandProfile() {
         let site = data.site_set;
         product.forEach(element => {
             let productOption = document.createElement("option");
-            productOption.setAttribute("value", `${element.name}`);
+            productOption.setAttribute("value", `${element.pk}`);
             productOption.innerText = `${element.name}`;
             productSelect.appendChild(productOption);
         });
         site.forEach(element => {
             let siteOption = document.createElement("option");
-            siteOption.setAttribute("value", `${element.name}`);
+            siteOption.setAttribute("value", `${element.pk}`);
             siteOption.innerText = `${element.name}`;
             siteSelect.appendChild(siteOption);
         });
@@ -105,10 +105,10 @@ function paintSales(data) {
 
 async function saleRetrieve(event) {
     event.preventDefault();
-    let productName = productSelect.value;
-    let siteName = siteSelect.value;
+    let product = productSelect.value;
+    let site = siteSelect.value;
     let date = dateInput.value;
-    let response = await fetch(`${baseUrl}/api/v1/sales/?product=${productName}&site=${siteName}&date=${date}`, {
+    let response = await fetch(`${baseUrl}/api/v1/sales/?product=${product}&site=${site}&date=${date}`, {
         method : "GET",
         credentials: "include",
         headers : {

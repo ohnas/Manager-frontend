@@ -1,0 +1,21 @@
+h1 {
+    text-align: center;
+    margin-top: 10%;
+}
+
+.product-form form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-form form input {
+    width: 30%;
+    text-align: center;
+}
+
+.product-form form select {
+    width: 30%;
+    text-align: center;
+}

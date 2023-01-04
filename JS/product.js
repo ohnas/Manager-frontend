@@ -1,8 +1,8 @@
 import { baseUrl, getCookie } from "./setting.js";
-const brandForm = document.querySelector("form");
+const productForm = document.querySelector("form");
 const nameInput = document.getElementById("namefiled");
-const desText = document.getElementById("desfiled");
-const bmSelect = document.getElementById("bmfiled");
+const costInput = document.getElementById("costfiled");
+const brandSelect = document.getElementById("brandfiled");
 
 async function userProfile() {
     let response = await fetch(`${baseUrl}/api/v1/users`, {
@@ -17,12 +17,12 @@ async function userProfile() {
         alert("사용 할 수 없는 페이지 입니다");
         location.href = "index.html";
     } else {
-        bmProfile();
+        brandProfile();
     }
 }
 
-async function bmProfile() {
-    let response = await fetch(`${baseUrl}/api/v1/brands/create`, {
+async function brandProfile() {
+    let response = await fetch(`${baseUrl}/api/v1/products/create`, {
         method : "GET",
         credentials: "include",
         headers : {
@@ -31,49 +31,50 @@ async function bmProfile() {
     });
     let data = await response.json();
     if(data.length === 0) {
-        alert("현재 등록된 bm이 없습니다.");
+        alert("현재 등록된 brand가 없습니다.");
     } else {
         data.forEach(element => {
-            let bmOption = document.createElement("option");
-            bmOption.setAttribute("value", `${element.pk}`);
-            bmOption.innerText = `${element.name}`;
-            bmSelect.appendChild(bmOption);
+            let brandOption = document.createElement("option");
+            brandOption.setAttribute("value", `${element.pk}`);
+            brandOption.innerText = `${element.name}`;
+            brandSelect.appendChild(brandOption);
         });
     }
 }
 
-function createBrand(event) {
+function createProdct(event) {
     event.preventDefault();
-    let brandData = {
+    let productData = {
         "name" : nameInput.value,
-        "description" : desText.value,
-        "user" : bmSelect.value,
+        "cost" : costInput.value,
+        "brand" : brandSelect.value,
     };
+    console.log(productData);
     nameInput.value = "";
-    desText.value = "";
-    bmSelect.value = "";
-    handleCreateBrand(brandData);
+    costInput.value = "";
+    brandSelect.value = "";
+    handleCreateProduct(productData);
 }
 
 
-async function handleCreateBrand(brandData) {
+async function handleCreateProduct(productData) {
     let csrftoken = getCookie('csrftoken');
-    let response = await fetch(`${baseUrl}/api/v1/brands/create` , {
+    let response = await fetch(`${baseUrl}/api/v1/products/create` , {
         method : "POST",
         credentials: "include",
         headers : {
             'Content-Type': 'application/json',
             "X-CSRFToken": csrftoken,
         },
-        body : JSON.stringify(brandData),
+        body : JSON.stringify(productData),
     });
     if(response.ok) {
-        alert("브랜드 생성완료");
-            location.href = "prodcut.html";
+        alert("상품 생성완료");
+            location.href = "site.html";
     } else {
         alert("입력 항목을 확인해주세요");
     }
 }
 
 userProfile();
-brandForm.addEventListener("submit", createBrand);
+productForm.addEventListener("submit", createProdct);
