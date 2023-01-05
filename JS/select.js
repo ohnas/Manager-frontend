@@ -18,7 +18,7 @@ async function userProfile() {
 }
 
 async function handleSelect() {
-    let response = await fetch(`${baseUrl}/api/v1/brands` , {
+    let response = await fetch(`${baseUrl}/api/v1/brands/my` , {
         method : "GET",
         credentials: "include",
         headers : {

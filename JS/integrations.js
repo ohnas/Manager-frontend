@@ -1,6 +1,8 @@
 import { baseUrl, getCookie } from "./setting.js";
 const headerDiv = document.querySelector(".header");
 const headerH1 = headerDiv.querySelector("h1");
+const headerForm = headerDiv.querySelector("form");
+const moveSelect = headerForm.querySelector("select");
 const logOutBtn = document.querySelector(".button");
 const saleRetrieveForm = document.querySelector(".sale-retrieve-form");
 const productSelect = document.getElementById("productfield");
@@ -31,10 +33,38 @@ async function userProfile() {
     });
     if(response.ok) {
         brandProfile();
+        anotherBrand();
     } else {
         alert("로그인이 되어있지 않습니다. 로그인 해주세요.");
         location.href = "index.html";
     }
+}
+
+async function anotherBrand() {
+    let response = await fetch(`${baseUrl}/api/v1/brands`, {
+        method : "GET",
+        credentials: "include",
+        headers : {
+            'Content-Type': 'application/json',
+        },
+    });
+    let data = await response.json();
+    if(response.ok) {
+        data.forEach(element => {
+            let moveOption = document.createElement("option");
+            moveOption.setAttribute("value", `${element.name}`);
+            moveOption.setAttribute("name", "brand");
+            moveOption.innerText = `${element.name}`;
+            moveSelect.appendChild(moveOption);
+        })  
+    }
+}
+
+function handleMoveBrand(event) {
+    event.preventDefault();
+    // headerForm.setAttribute("action", `integrations.html?brand=${moveSelect.value}`);
+    location.href = `integrations.html?brand=${moveSelect.value}`;
+    
 }
 
 async function brandProfile() {
@@ -240,6 +270,7 @@ async function logOut() {
 
 userProfile();
 handleDateInput();
-logOutBtn.addEventListener("click", logOut);
 saleRetrieveForm.addEventListener("submit", saleRetrieve);
 facebookRetrieveForm.addEventListener("submit", facebookRetrieve);
+headerForm.addEventListener("submit", handleMoveBrand);
+logOutBtn.addEventListener("click", logOut);
