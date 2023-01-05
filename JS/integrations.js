@@ -85,6 +85,7 @@ function paintSales(data) {
         let countTd = document.createElement("td");
         let priceTd = document.createElement("td");
         let deliveryPriceTd = document.createElement("td");
+        let orderTimeTd = document.createElement("td");
         let payTimeTd = document.createElement("td");
         let salesTableTr = document.createElement("tr");
         productNameTd.innerText = `${element.product.name}`;
@@ -92,12 +93,14 @@ function paintSales(data) {
         countTd.innerText = `${element.count}`;
         priceTd.innerText = `${element.price}`;
         deliveryPriceTd.innerText = `${element.delivery_price}`;
+        orderTimeTd.innerText = `${element.order_time}`;
         payTimeTd.innerText = `${element.pay_time}`;
         salesTableTr.appendChild(productNameTd);
         salesTableTr.appendChild(productCostTd);
         salesTableTr.appendChild(countTd);
         salesTableTr.appendChild(priceTd);
         salesTableTr.appendChild(deliveryPriceTd);
+        salesTableTr.appendChild(orderTimeTd);
         salesTableTr.appendChild(payTimeTd);
         salesTableTbody.appendChild(salesTableTr);
     });
@@ -116,6 +119,7 @@ async function saleRetrieve(event) {
         },
     });
     let data = await response.json();
+    console.log(data);
     if(data.length === 0) {
         alert("선택 한 날짜에는 판매 데이터가 없습니다. 다른 날짜를 선택해주세요");
     } else {
