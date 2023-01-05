@@ -2,12 +2,17 @@ import { baseUrl, getCookie } from "./setting.js";
 const headerDiv = document.querySelector(".header");
 const headerH1 = headerDiv.querySelector("h1");
 const logOutBtn = document.querySelector(".button");
-const integrationForm = document.querySelector(".integration-form");
+const saleRetrieveForm = document.querySelector(".sale-retrieve-form");
 const productSelect = document.getElementById("productfield");
 const siteSelect = document.getElementById("sitefield");
-const dateInput = document.getElementById("datefield");
+const saleDateInput = document.getElementById("sale-datefield");
 const salesTable = document.querySelector(".sales-table");
 const salesTableTbody = salesTable.querySelector("tbody");
+const facebookTable = document.querySelector(".facebook-table");
+const faccbookTableTbody = facebookTable.querySelector("tbody");
+const facebookRetrieveForm = document.querySelector(".facebook-retrieve-form");
+const facebookSelect = document.getElementById("facebookfield");
+const facebookDateInput = document.getElementById("facebook-datefield");
 
 
 const currentUrl = location.href;
@@ -55,9 +60,13 @@ async function brandProfile() {
         });
         site.forEach(element => {
             let siteOption = document.createElement("option");
+            let facebookOption = document.createElement("option");
             siteOption.setAttribute("value", `${element.pk}`);
             siteOption.innerText = `${element.name}`;
+            facebookOption.setAttribute("value", `${element.pk}`);
+            facebookOption.innerText = `${element.name}`;
             siteSelect.appendChild(siteOption);
+            facebookSelect.appendChild(facebookOption);
         });
     }
 }
@@ -75,7 +84,8 @@ function handleDateInput() {
         date = `0${date}`
     }
     const yesterdayValue = `${yesterday.getFullYear()}-${month}-${date}`
-    dateInput.setAttribute("max", yesterdayValue);
+    saleDateInput.setAttribute("max", yesterdayValue);
+    facebookDateInput.setAttribute("max", yesterdayValue);
 }
 
 function paintSales(data) {
@@ -110,7 +120,7 @@ async function saleRetrieve(event) {
     event.preventDefault();
     let product = productSelect.value;
     let site = siteSelect.value;
-    let date = dateInput.value;
+    let date = saleDateInput.value;
     let response = await fetch(`${baseUrl}/api/v1/sales/?product=${product}&site=${site}&date=${date}`, {
         method : "GET",
         credentials: "include",
@@ -119,16 +129,90 @@ async function saleRetrieve(event) {
         },
     });
     let data = await response.json();
-    console.log(data);
     if(data.length === 0) {
         alert("선택 한 날짜에는 판매 데이터가 없습니다. 다른 날짜를 선택해주세요");
     } else {
         if(salesTableTbody.firstElementChild === null) {
             paintSales(data);
         } else {
-            const tr = salesTableTbody.querySelector("tr");
-            tr.remove();
+            const tr = salesTableTbody.querySelectorAll("tr");
+            tr.forEach(element => {
+                element.remove();
+            });
             paintSales(data);
+        }
+    }
+}
+
+function paintFacebook(data) {
+    data.forEach(element => {
+        let campaignName = document.createElement("td");
+        let reach = document.createElement("td");
+        let impressions = document.createElement("td");
+        let frequency = document.createElement("td");
+        let spend = document.createElement("td");
+        let cpm = document.createElement("td");
+        let purchaseRoas = document.createElement("td");
+        let websiteCtr = document.createElement("td");
+        let costPerUniqueInlineLinkClick = document.createElement("td");
+        let purchase = document.createElement("td");
+        let landingPageView = document.createElement("td");
+        let linkClick = document.createElement("td");
+        let adDate = document.createElement("td");
+        let facebookTableTr = document.createElement("tr");
+        campaignName.innerText = `${element.campaign_name}`;
+        reach.innerText = `${element.reach}`;
+        impressions.innerText = `${element.impressions}`;
+        frequency.innerText = `${element.frequency}`;
+        spend.innerText = `${element.spend}`;
+        cpm.innerText = `${element.cpm}`;
+        purchaseRoas.innerText = `${element.purchase_roas}`;
+        websiteCtr.innerText = `${element.website_ctr}`;
+        costPerUniqueInlineLinkClick.innerText = `${element.cost_per_unique_inline_link_click}`;
+        purchase.innerText = `${element.purchase}`;
+        landingPageView.innerText = `${element.landing_page_view}`;
+        linkClick.innerText = `${element.link_click}`;
+        adDate.innerText = `${element.ad_date}`;
+        facebookTableTr.appendChild(campaignName);
+        facebookTableTr.appendChild(reach);
+        facebookTableTr.appendChild(impressions);
+        facebookTableTr.appendChild(frequency);
+        facebookTableTr.appendChild(spend);
+        facebookTableTr.appendChild(cpm);
+        facebookTableTr.appendChild(purchaseRoas);
+        facebookTableTr.appendChild(websiteCtr);
+        facebookTableTr.appendChild(costPerUniqueInlineLinkClick);
+        facebookTableTr.appendChild(purchase);
+        facebookTableTr.appendChild(landingPageView);
+        facebookTableTr.appendChild(linkClick);
+        facebookTableTr.appendChild(adDate);
+        faccbookTableTbody.appendChild(facebookTableTr);
+    });
+}
+
+async function facebookRetrieve(event) {
+    event.preventDefault();
+    let site = facebookSelect.value;
+    let date = facebookDateInput.value;
+    let response = await fetch(`${baseUrl}/api/v1/advertisings/?site=${site}&date=${date}`, {
+        method : "GET",
+        credentials: "include",
+        headers : {
+            'Content-Type': 'application/json',
+        },
+    });
+    let data = await response.json();
+    if(data.length === 0) {
+        alert("선택 한 날짜에는 데이터가 없습니다. 다른 날짜를 선택해주세요");
+    } else {
+        if(faccbookTableTbody.firstElementChild === null) {
+            paintFacebook(data);
+        } else {
+            const tr = faccbookTableTbody.querySelectorAll("tr");
+            tr.forEach(element => {
+                element.remove();
+            });
+            paintFacebook(data);
         }
     }
 }
@@ -157,4 +241,5 @@ async function logOut() {
 userProfile();
 handleDateInput();
 logOutBtn.addEventListener("click", logOut);
-integrationForm.addEventListener("submit", saleRetrieve);
+saleRetrieveForm.addEventListener("submit", saleRetrieve);
+facebookRetrieveForm.addEventListener("submit", facebookRetrieve);

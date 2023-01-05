@@ -18,13 +18,20 @@
         <h1></h1>
         <button class="button button-clear">Log out</button>
     </div>
-    <form class="integration-form">
+    <form class="sale-retrieve-form">
         <label for="productfield">조회 할 상품을 선택해주세요</label>
         <select id="productfield" required></select>
         <label for="sitefield">조회 할 판매사이트를 선택해주세요</label>
         <select id="sitefield" required></select>
-        <label for="datefield">조회 할 날짜를 선택해주세요</label>
-        <input id="datefield" type="date" required />
+        <label for="sale-datefield">조회 할 날짜를 선택해주세요</label>
+        <input id="sale-datefield" type="date" required />
+        <button type="submit">조회</button>
+    </form>
+    <form class="facebook-retrieve-form">
+        <label for="facebookfield">조회 할 페이스북 계정을 선택해주세요</label>
+        <select id="facebookfield" required></select>
+        <label for="facebook-datefield">조회 할 날짜를 선택해주세요</label>
+        <input id="facebook-datefield" type="date" required />
         <button type="submit">조회</button>
     </form>
     <table class="sales-table">
@@ -37,6 +44,27 @@
                 <th>Delivery Price</th>
                 <th>Order Time</th>
                 <th>Pay Time</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <table class="facebook-table">
+        <thead>
+            <tr>
+                <th>Campaign Name</th>
+                <th>Reach</th>
+                <th>Impressions</th>
+                <th>Frequency</th>
+                <th>Spend</th>
+                <th>CPM</th>
+                <th>Purchase roas</th>
+                <th>Website CTR</th>
+                <th>Cost per unique inline link click</th>
+                <th>Purchase</th>
+                <th>Landing Page View</th>
+                <th>Link Click</th>
+                <th>Date</th>
             </tr>
         </thead>
         <tbody>

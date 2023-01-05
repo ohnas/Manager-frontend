@@ -63,7 +63,6 @@ function createSaleSite(event) {
         "api_key" : saleApikeyInput.value,
         "secret_key" : saleSecretkeyInput.value,
     };
-    console.log(data);
     saleNameInput.value = "";
     saleUrlInput.value = "";
     saleSiteBrandSelect.value = "";
@@ -80,7 +79,6 @@ function createFacebookSite(event) {
         "brand" : facebookSiteBrandSelect.value,
         "ad_account_id" : facebookAdAccountIdInput.value,
     };
-    console.log(data);
     facebookNameInput.value = "";
     facebookUrlInput.value = "";
     facebookSiteBrandSelect.value = "";

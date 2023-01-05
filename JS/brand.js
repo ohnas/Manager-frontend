@@ -69,7 +69,7 @@ async function handleCreateBrand(brandData) {
     });
     if(response.ok) {
         alert("브랜드 생성완료");
-            location.href = "prodcut.html";
+            location.href = "product.html";
     } else {
         alert("입력 항목을 확인해주세요");
     }

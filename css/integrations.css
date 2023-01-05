@@ -4,19 +4,38 @@
     margin-left: 1%;
 }
 
-.integration-form {
+.sale-retrieve-form {
     margin-left: 1%;
 }
 
-.integration-form input {
+.sale-retrieve-form input {
     width: 25%;
 }
 
-.integration-form select {
+.sale-retrieve-form select {
     width: 25%;
 }
 
 .sales-table {
     margin-left: 1%;
+    padding-right: 3%;
+
+}
+
+.facebook-retrieve-form {
+    margin-left: 1%;
+}
+
+.facebook-retrieve-form select {
+    width: 25%;
+}
+
+.facebook-retrieve-form input {
+    width: 25%;
+}
+
+.facebook-table {
+    margin-left: 1%;
+    padding-right: 3%;
 
 }
