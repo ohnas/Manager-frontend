@@ -21,7 +21,7 @@ async function userProfile() {
 }
 
 
-function signUp(event) {
+function handlesignUp(event) {
     event.preventDefault();
     let signUpData = {
         "username" : signUpId.value,
@@ -33,10 +33,10 @@ function signUp(event) {
     signUpPw.value = "";
     signUpName.value = "";
     signUpEmail.value = "";
-    handleSignUp(signUpData);
+    onSignUp(signUpData);
 }
 
-async function handleSignUp(signUpData) {
+async function onSignUp(signUpData) {
     let csrftoken = getCookie('csrftoken');
     let response = await fetch(`${baseUrl}/api/v1/users/create` , {
         method : "POST",
@@ -47,14 +47,13 @@ async function handleSignUp(signUpData) {
         },
         body : JSON.stringify(signUpData),
     });
-    let data = await response.json();
-    if(data.response === "success") {
+    if(response.ok) {
         alert("회원가입 성공하였습니다. 로그인 하러 가시겠습니까?");
             location.href = "index.html";
     } else {
-        alert("입력 조건을 확인해주세요");
+        alert("입력 항목을 확인해주세요");
     }
 }
 
 userProfile();
-signUpForm.addEventListener("submit", signUp)
+signUpForm.addEventListener("submit", handlesignUp)

@@ -13,7 +13,7 @@ async function userProfile() {
         },
     });
     let data = await response.json();
-    if(data.is_staff === false) {
+    if(data.is_staff == false) {
         alert("사용 할 수 없는 페이지 입니다");
         location.href = "index.html";
     } else {

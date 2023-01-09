@@ -1,4 +1,4 @@
-import { baseUrl } from "./setting.js";
+import { baseUrl, getCookie } from "./setting.js";
 const logInFormDiv = document.querySelector(".login-form");
 const logInForm = document.querySelector("form");
 const logInId = document.getElementById("id");
@@ -20,14 +20,13 @@ async function userProfile() {
         logInFormDiv.classList.add("hidden");
         signUpDiv.classList.add("hidden");
         goBrandDiv.classList.remove("hidden");
-        if(data.is_staff === true) {
+        if(data.is_staff == true) {
             goManagementDiv.classList.remove("hidden");
         }
     }
 }
 
-
-function logIn(event) {
+function handlelogIn(event) {
     event.preventDefault();
     if(logInId.value === "") {
         alert("ID를 입력해주세요");
@@ -44,26 +43,27 @@ function logIn(event) {
         };
         logInId.value = "";
         logInPw.value = "";
-        handleLogIn(logInData);
-
+        onLogIn(logInData);
     }
 }
 
-async function handleLogIn(logInData) {
+async function onLogIn(logInData) {
+    let csrftoken = getCookie('csrftoken');
     let response = await fetch(`${baseUrl}/api/v1/users/log-in` , {
         method : "POST",
         credentials: "include",
         headers : {
             'Content-Type': 'application/json',
+            "X-CSRFToken": csrftoken,
         },
         body : JSON.stringify(logInData),
     });
     if(response.ok) {
-        location.href = "select.html";
+        userProfile();
     } else {
         alert("ID 와 PW를 확인해주세요");
     }
 }
 
 userProfile();
-logInForm.addEventListener("submit", logIn)
+logInForm.addEventListener("submit", handlelogIn)

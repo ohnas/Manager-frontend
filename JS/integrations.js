@@ -258,8 +258,7 @@ async function logOut() {
             "X-CSRFToken": csrftoken,
         },
     });
-    let data = await response.json();
-    if(data.response === "success") {
+    if(response.ok) {
         alert("로그아웃")
         location.href = "index.html";
     } else {
@@ -270,7 +269,7 @@ async function logOut() {
 
 userProfile();
 handleDateInput();
+logOutBtn.addEventListener("click", logOut);
+headerForm.addEventListener("submit", handleMoveBrand);
 saleRetrieveForm.addEventListener("submit", saleRetrieve);
 facebookRetrieveForm.addEventListener("submit", facebookRetrieve);
-headerForm.addEventListener("submit", handleMoveBrand);
-logOutBtn.addEventListener("click", logOut);
