@@ -1,4 +1,4 @@
-export const baseUrl = "http://127.0.0.1:8000"
+export const baseUrl = "https://port-0-manager-backend-4fuvwk25lcpo4p0w.gksl2.cloudtype.app"
 
 // 모던 자바스크립트에서 찾은 내용
 export function getCookie(name) {
